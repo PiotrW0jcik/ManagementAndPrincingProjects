@@ -7,25 +7,31 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ManagementAndPricingOfProjectsMVC.Data;
 using ManagementAndPricingOfProjectsMVC.Models;
+using Microsoft.AspNetCore.Authorization;
+
 
 namespace ManagementAndPricingOfProjectsMVC.Controllers
 {
-    public class EmployeeController : Controller
+    public class ProjectController : Controller
     {
+        //readonly IGeneratePdf _generatePdf;
         private readonly ApplicationDbContext _context;
 
-        public EmployeeController(ApplicationDbContext context)
+        public ProjectController(ApplicationDbContext context)
         {
             _context = context;
+            
         }
 
-        // GET: Employee
+        // GET: Project
+        [Authorize]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Employees.ToListAsync());
+            return View(await _context.Projects.ToListAsync());
         }
 
-        // GET: Employee/Details/5
+   
+        // GET: Project/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +39,39 @@ namespace ManagementAndPricingOfProjectsMVC.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employees
-                .FirstOrDefaultAsync(m => m.EmployeeId == id);
-            if (employee == null)
+            var project = await _context.Projects
+                .FirstOrDefaultAsync(m => m.ProjectId == id);
+            if (project == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            return View(project);
         }
 
-        // GET: Employee/Create
+        // GET: Project/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Employee/Create
+        // POST: Project/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmployeeId,FullName,Position,PricePerHour")] Employee employee)
+        public async Task<IActionResult> Create([Bind("ProjectId,ProjectName,Description,PriceForProject")] Project project)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(employee);
+                _context.Add(project);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            return View(project);
         }
 
-        // GET: Employee/Edit/5
+        // GET: Project/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +79,22 @@ namespace ManagementAndPricingOfProjectsMVC.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employees.FindAsync(id);
-            if (employee == null)
+            var project = await _context.Projects.FindAsync(id);
+            if (project == null)
             {
                 return NotFound();
             }
-            return View(employee);
+            return View(project);
         }
 
-        // POST: Employee/Edit/5
+        // POST: Project/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmployeeId,FullName,Position,PricePerHour")] Employee employee)
+        public async Task<IActionResult> Edit(int id, [Bind("ProjectId,PriceForProject,ProjectName,Description")] Project project)
         {
-            if (id != employee.EmployeeId)
+            if (id != project.ProjectId)
             {
                 return NotFound();
             }
@@ -97,12 +103,15 @@ namespace ManagementAndPricingOfProjectsMVC.Controllers
             {
                 try
                 {
-                    _context.Update(employee);
+                   // var price = await _context.Projects
+                      //  .FirstOrDefaultAsync(m => m.ProjectId == id);
+                   // project.PriceForProject = price.PriceForProject;
+                    _context.Update(project);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EmployeeExists(employee.EmployeeId))
+                    if (!ProjectExists(project.ProjectId))
                     {
                         return NotFound();
                     }
@@ -113,10 +122,12 @@ namespace ManagementAndPricingOfProjectsMVC.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(employee);
+            return View(project);
         }
 
-        // GET: Employee/Delete/5
+        
+
+        // GET: Project/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +135,37 @@ namespace ManagementAndPricingOfProjectsMVC.Controllers
                 return NotFound();
             }
 
-            var employee = await _context.Employees
-                .FirstOrDefaultAsync(m => m.EmployeeId == id);
-            if (employee == null)
+            var project = await _context.Projects
+                .FirstOrDefaultAsync(m => m.ProjectId == id);
+            if (project == null)
             {
                 return NotFound();
             }
 
-            return View(employee);
+            return View(project);
         }
 
-        // POST: Employee/Delete/5
+
+        // POST: Project/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var employee = await _context.Employees.FindAsync(id);
-            _context.Employees.Remove(employee);
+            var project = await _context.Projects.FindAsync(id);
+            while (project.Tasks.Count != 0)
+            {
+                var tasks = await _context.Tasks.FirstOrDefaultAsync(x => x.ProjectID == id);
+                _context.Tasks.Remove(tasks);
+                await _context.SaveChangesAsync();
+            }
+            _context.Projects.Remove(project);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EmployeeExists(int id)
+        private bool ProjectExists(int id)
         {
-            return _context.Employees.Any(e => e.EmployeeId == id);
+            return _context.Projects.Any(e => e.ProjectId == id);
         }
     }
 }

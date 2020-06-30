@@ -7,71 +7,84 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Project</h4>
+    <h4>@Html.DisplayFor(model => model.ProjectName)</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProjectName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProjectName)
-        </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Description)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Description)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.PriceForProject)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.PriceForProject)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Tasks)
-        </dt>
-        <dd class = "col-sm-10">
-            <dd> @if (Model.Tasks != null)
-                 {
-                     <table class="table">
-                         <tr>
-                             <th>Task Name</th>
-                             <th>Position</th>
-                             <th>Hours</th>
-                             <th>Price for Hours</th>
-                             <th>Price for Task</th>
-                         </tr>
-                         @foreach (var item in Model.Tasks)
-                         {
-                             <tr>
-                                 <td>
-                                     @Html.DisplayFor(modelItem => item.TaskName)
-                                 </td>
 
-                                 <td>
-                                     @Html.DisplayFor(modelItem => item.Hours)
-                                 </td>
-                                 <td>
-                                     @Html.DisplayFor(modelItem => item.PricePerHour)
-                                 </td>
-                                 <td>
-                                     @Html.DisplayFor(modelItem => item.Hours)
-                                 </td>
+        <dd class="col-sm-10">
+            <dd>
+                @if (Model.Tasks != null)
+                {
+                    <table class="table">
+                        <tr>
+                            <th>Task Name</th>
+                            <th>Role</th>
+                            <th>Technology</th>
+                            <th>Hours</th>
+                            <th>Price per Hours</th>
+                            <th>Price per Task</th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model.Tasks)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TaskName)
+                                </td>
 
-                             </tr>
-                         }
-                     </table>
-                 }
-                 else
-                 {
-                     <p> Empty</p>
-                 }
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Role)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Technology)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PricePerHour)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Hours)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.sum)
+                                </td>
+                                <td>
+                                    <a href='@Url.Action("Edit", "Task",new { id = item.TaskId })'> <i class="fa fa-marker fa-lg"></i></a>
+                                    <a href='@Url.Action("Details", "Task",new { id = item.TaskId })'> <i class="fas fa-info fa-lg"></i></a>
+                                    <a href='@Url.Action("Delete", "Task",new { id = item.TaskId })' class="text-danger ml-1">
+                                        <i class="fa fa-trash-alt fa-lg"></i></a>
+                                </td>
+
+                            </tr>
+                        }
+                    </table>
+                    //<a asp-action="CreateTask" asp-route-id="@Model.ProjectId">Create NewTask</a>
+                }
+                else
+                {
+                    <p> Empty</p>
+                }
             </dd>
+            <dt class="col-sm-10">
+                <a href='@Url.Action("Create", "Task",new { id = Model.ProjectId })' class="btn btn-primary"><i class="far fa-plus-square"></i>Add New Task</a>
+</dt>
+           
         </dd>
     </dl>
 </div>
+
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.ProjectId">Edit</a> |
+    <a asp-action="Edit" asp-route-id="@Model.ProjectId"><i class="fa fa-marker fa-lg"></i></a> |
     <a asp-action="Index">Back to List</a>
 </div>

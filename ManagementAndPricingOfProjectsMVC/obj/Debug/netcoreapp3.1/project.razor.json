@@ -20521,6 +20521,26 @@
   "RootNamespace": "ManagementAndPricingOfProjectsMVC",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\Project\\Edit.cshtml",
+      "TargetPath": "Views\\Project\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\Task\\Delete.cshtml",
+      "TargetPath": "Views\\Task\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\Project\\Index.cshtml",
+      "TargetPath": "Views\\Project\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\Task\\Edit.cshtml",
+      "TargetPath": "Views\\Task\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\Shared\\_LoginPartial.cshtml",
       "TargetPath": "Views\\Shared\\_LoginPartial.cshtml",
       "FileKind": "mvc"
@@ -20551,8 +20571,33 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\Project\\Create.cshtml",
+      "TargetPath": "Views\\Project\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\Task\\Details.cshtml",
+      "TargetPath": "Views\\Task\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\Project\\Delete.cshtml",
+      "TargetPath": "Views\\Project\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\Task\\Create.cshtml",
+      "TargetPath": "Views\\Task\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\Project\\Details.cshtml",
+      "TargetPath": "Views\\Project\\Details.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -20563,6 +20608,11 @@
     {
       "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\Home\\Index.cshtml",
       "TargetPath": "Views\\Home\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\piotr\\Source\\Repos\\ManagementAndPricingOfProjectsMVC\\ManagementAndPricingOfProjectsMVC\\Views\\Task\\Index.cshtml",
+      "TargetPath": "Views\\Task\\Index.cshtml",
       "FileKind": "mvc"
     }
   ],

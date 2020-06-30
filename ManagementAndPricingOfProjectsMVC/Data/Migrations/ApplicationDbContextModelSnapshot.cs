@@ -19,27 +19,65 @@ namespace ManagementAndPricingOfProjectsMVC.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("ManagementAndPricingOfProjectsMVC.Models.Employee", b =>
+            modelBuilder.Entity("ManagementAndPricingOfProjectsMVC.Models.Project", b =>
                 {
-                    b.Property<int>("EmployeeId")
+                    b.Property<int>("ProjectId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("FullName")
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PriceForProject")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProjectName")
                         .IsRequired()
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)");
+                    b.HasKey("ProjectId");
+
+                    b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("ManagementAndPricingOfProjectsMVC.Models.Task", b =>
+                {
+                    b.Property<int>("TaskId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Hours")
+                        .HasColumnType("int");
 
                     b.Property<int>("PricePerHour")
                         .HasColumnType("int");
 
-                    b.HasKey("EmployeeId");
+                    b.Property<int>("ProjectID")
+                        .HasColumnType("int");
 
-                    b.ToTable("Employees");
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TaskName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<string>("Technology")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("sum")
+                        .HasColumnType("int");
+
+                    b.HasKey("TaskId");
+
+                    b.HasIndex("ProjectID");
+
+                    b.ToTable("Tasks");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -240,6 +278,15 @@ namespace ManagementAndPricingOfProjectsMVC.Data.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("ManagementAndPricingOfProjectsMVC.Models.Task", b =>
+                {
+                    b.HasOne("ManagementAndPricingOfProjectsMVC.Models.Project", "Project")
+                        .WithMany("Tasks")
+                        .HasForeignKey("ProjectID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

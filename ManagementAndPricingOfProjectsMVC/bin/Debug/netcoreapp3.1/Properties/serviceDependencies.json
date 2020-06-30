@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "ManagementAndPricingOfProjectsMVCContext"
+    },
+    "mssql3": {
+      "type": "mssql",
+      "connectionId": "AplicationDbContext"
+    },
     "mssql1": {
       "type": "mssql",
       "connectionId": "DefaultConnection"

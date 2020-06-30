@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "mssql2": {
+      "resourceId": null,
+      "type": "mssql.onprem",
+      "connectionId": "ManagementAndPricingOfProjectsMVCContext",
+      "secretStore": "AzureAppSettings"
+    },
+    "mssql3": {
+      "resourceId": null,
+      "type": "mssql.onprem",
+      "connectionId": "AplicationDbContext",
+      "secretStore": "AzureAppSettings"
+    },
+    "mssql1": {
+      "resourceId": null,
+      "type": "mssql.onprem",
+      "connectionId": "DefaultConnection",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

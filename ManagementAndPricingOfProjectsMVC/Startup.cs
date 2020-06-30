@@ -46,6 +46,8 @@ namespace ManagementAndPricingOfProjectsMVC
             }
             else
             {
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
                 app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
@@ -62,7 +64,7 @@ namespace ManagementAndPricingOfProjectsMVC
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Project}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
         }

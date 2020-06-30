@@ -5,6 +5,7 @@ using ManagementAndPricingOfProjectsMVC.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
+
 namespace ManagementAndPricingOfProjectsMVC.Data
 {
     public class ApplicationDbContext : IdentityDbContext
@@ -13,6 +14,12 @@ namespace ManagementAndPricingOfProjectsMVC.Data
             : base(options)
         {
         }
-        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Task> Tasks { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
+        }
+
     }
 }

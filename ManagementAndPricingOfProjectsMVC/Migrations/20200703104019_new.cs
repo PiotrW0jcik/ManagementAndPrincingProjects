@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ManagementAndPricingOfProjectsMVC.Data.Migrations
+namespace WebApplication11.Data.Migrations
 {
-    public partial class AddEmployee : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

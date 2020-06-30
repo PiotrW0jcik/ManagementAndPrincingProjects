@@ -11,14 +11,16 @@ namespace ManagementAndPricingOfProjectsMVC.Models
     {
         public Project()
         {
+            PriceForProject = 0;
             Tasks = new HashSet<Task>();
         }
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        //[DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
         public int ProjectId { get; set; }
         [Column(TypeName = "nvarchar(250)")]
         [Required]
         public string ProjectName { get; set; }
+       
         [Required]
         public string Description { get; set; }
         
